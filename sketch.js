@@ -7,14 +7,16 @@ const Render = Matter.Render;
 
 var engine, world ;
 function setup() {
-	createCanvas(800, 700);
+	createCanvas(800, 500);
   engine = Engine.create();
 
 	//engine = Engine. create        ();
 	world = engine.world;
 
-	ground2 = new Ground();
-    paper1 = new Paper();
+  ground2 = new Ground(400,450,800,10);
+    paper1 = new Paper(360,410,30);
+   wall1 = new Bin( 680,405,10,80 );
+   wall2 = new Bin( 600,405,10,80 );
     
 	//Engine.run(engine);
   
@@ -24,15 +26,26 @@ function setup() {
 function draw() {
 
   background(0);
-
+  Engine.update(engine);
  
 
   ground2.display();
   paper1.display();
+  wall1.display();
+  wall2.display();
+
+  if (keyDown === 'UP_ARROW'){
+    console.log('paper');
+   Body.applyForce(paper1.body, paper1.body.position, {x:85,y:-85})
+  }
 
   drawSprites();
  
 }
+// function keyPressed (){
+ 
+// }
+
 
 
 
